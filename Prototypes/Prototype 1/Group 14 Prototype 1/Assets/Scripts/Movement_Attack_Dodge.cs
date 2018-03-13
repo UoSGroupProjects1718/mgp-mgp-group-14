@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Movement_Attack_Dodge : MonoBehaviour
 {
-    bool Pend = false;          //Keeps track to when the pendulum is moving right and left.
+    public bool Pend = false;          //Keeps track to when the pendulum is moving right and left.
 
     public bool isMoving = true;       //Keeps track to when the pendulum is moving and when it stopped.
 
     public bool Hit;
     public bool Dodge;
     public GameObject AttackRef;
+    [Range(1.0f, 2.5f)]
+    public float speed = 1.5f;
 
     void Start()
     {
@@ -27,12 +29,12 @@ public class Movement_Attack_Dodge : MonoBehaviour
             if (Pend == false)
             {
 
-                if (transform.eulerAngles.z <= 46 || transform.eulerAngles.z > 315)
+                if (transform.eulerAngles.z <= 47 || transform.eulerAngles.z > 315)
                 {
-                    transform.Rotate(0, 0, -1);                      //When the pendulum rotation is between those values it moves to the left.
+                    transform.Rotate(0, 0, -1 * speed);                      //When the pendulum rotation is between those values it moves to the left.
                                                                      //Until it reaches -45 degrees.
                 }
-                else if (transform.eulerAngles.z == 315)
+                else if (transform.eulerAngles.z >= 313 || transform.eulerAngles.z <= 316)
                 {
                     Pend = true;
 
@@ -41,25 +43,26 @@ public class Movement_Attack_Dodge : MonoBehaviour
             }
             else if (Pend == true)
             {
-                if (transform.eulerAngles.z < 45 || transform.eulerAngles.z >= 315)
+                if (transform.eulerAngles.z < 45 || transform.eulerAngles.z >= 314)
                 {                                                                   //Here is moving to the right until it reaches 46 degrees.
-                    transform.Rotate(0, 0, 1);                                      //Then will start moving to the left again.
+                    transform.Rotate(0, 0, 1 * speed);                                      //Then will start moving to the left again.
 
                 }
-                else if (transform.eulerAngles.z == 46)
+                else if (transform.eulerAngles.z >= 44 || transform.eulerAngles.z <= 47) 
                 {
                     Pend = false;
 
                 }
 
             }
-        } else if (isMoving == false)
+        }
+        else if (isMoving == false)
         {
             Destroy(GameObject.FindWithTag("WORK"), 1);
         }
     }
 
-   public void StopPendulum()
+    public void StopPendulum()
 
     //When you click you trigger the bool that keeps tracking the movement, and then it calculates the angle of the pendulum
     // to know if it's an attack dodge or miss.
@@ -87,18 +90,18 @@ public class Movement_Attack_Dodge : MonoBehaviour
             }
             else if (transform.eulerAngles.z <= 351 && transform.eulerAngles.z >= 330)
             {
-                
+
                 if (something.is1dClicked == true)
                 {
                     something.Attack1Success = false;
                     something.Dodge1Success = true;
-                } 
+                }
                 if (something.is2dClicked == true)
                 {
-                   something.Attack2Success = false;
-                   something.Dodge2Success = true;
-                }  
-           } 
-       }
+                    something.Attack2Success = false;
+                    something.Dodge2Success = true;
+                }
+            }
+        }
     }
 }
