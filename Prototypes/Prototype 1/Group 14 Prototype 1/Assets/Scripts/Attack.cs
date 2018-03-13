@@ -100,15 +100,27 @@ public class Attack : MonoBehaviour {
         {
             Player3Attack();
         }
+		 
+		if (currentPlayer == 2 && Input.GetMouseButton(0))
+		{
+			player2_Attackb.interactable = true;
+			player2_Dodgeb.interactable = true;
+		}
+		else if (currentPlayer == 1 && Input.GetMouseButton(0))
+		{
+			player1_Attackb.interactable = true;
+			player1_Dodgeb.interactable = true;
+		}
+
 	}
 
 	public void PlayerAttack()
 	{
 		if (currentPlayer == 1) //If the current player equals 1
 		{
-            player2_Attackb.interactable = true;
+           // player2_Attackb.interactable = true;
             player1_Attackb.interactable = false;
-            player2_Dodgeb.interactable = true;
+           // player2_Dodgeb.interactable = true;
             player1_Dodgeb.interactable = false;
 
             is1Clicked = false;
@@ -117,16 +129,17 @@ public class Attack : MonoBehaviour {
             is2dClicked = false;
         }
 
+
 	}
 
 	public void Player2Attack()
 	{
-		if (currentPlayer == 2)
+		if (currentPlayer == 2 )
 		{
             player2_Attackb.interactable = false;
-            player1_Attackb.interactable = true;
+            //player1_Attackb.interactable = true;
             player2_Dodgeb.interactable = false;
-            player1_Dodgeb.interactable = true;
+            //player1_Dodgeb.interactable = true;
         
             is1Clicked = false;
             is1dClicked = false;
@@ -142,7 +155,7 @@ public class Attack : MonoBehaviour {
         {
             if (Attack1Success == true && Attack2Success == true)
             {
-                Debug.Log("Something!");
+                //Debug.Log("Something!");
                 player2_hp -= 1;
                 GameObject g = GameObject.Find("Player 2 health");
                 Player_2_health bScript2 = g.GetComponent<Player_2_health>();
@@ -155,19 +168,19 @@ public class Attack : MonoBehaviour {
             }
             else if (Attack1Success == true && Dodge2Success == true)
             {
-                Debug.Log("Something2!");
+                //Debug.Log("Something2!");
             }
             else if (Dodge1Success == true && Attack2Success == true)
             {
-                Debug.Log("Something3!");
+                //Debug.Log("Something3!");
             }
             else if (Dodge1Success == true && Dodge2Success == true)
             {
-                Debug.Log("Something!4");
+                //Debug.Log("Something!4");
             }
             else if (Attack1Success == true && Dodge2Success == false)
             {
-                Debug.Log("Something!5");
+                //Debug.Log("Something!5");
                 player2_hp -= 1;
                 GameObject g = GameObject.Find("Player 2 health");
                 Player_2_health bScript2 = g.GetComponent<Player_2_health>();
@@ -175,7 +188,7 @@ public class Attack : MonoBehaviour {
             }
             else if (Dodge1Success == false && Attack2Success == true)
             {
-                Debug.Log("Something!6");
+               // Debug.Log("Something!6");
                 player1_hp -= 1;
                 GameObject j = GameObject.Find("Player 1 health");
                 Player_1_health bScript = j.GetComponent<Player_1_health>();
