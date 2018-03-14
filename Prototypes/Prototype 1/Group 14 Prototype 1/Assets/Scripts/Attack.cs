@@ -43,8 +43,8 @@ public class Attack : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        player1_hp = 3; //Sets player 1 health to 3
-        player2_hp = 3; //Sets player 2 health to 3
+        player1_hp = 100; //Sets player 1 health to 3
+        player2_hp = 100; //Sets player 2 health to 3
 		currentPlayer = 1; //Sets the current player to 1
         player1_Attackb.onClick.AddListener(isAttackClicked);
         player2_Attackb.onClick.AddListener(isAttack2Clicked);
@@ -75,7 +75,6 @@ public class Attack : MonoBehaviour {
     {
         is2Clicked = true;
     }
-	
 	// Update is called once per frame
 	void Update () 
 	{
@@ -156,15 +155,11 @@ public class Attack : MonoBehaviour {
             if (Attack1Success == true && Attack2Success == true)
             {
                 //Debug.Log("Something!");
-                player2_hp -= 1;
-                GameObject g = GameObject.Find("Player 2 health");
-                Player_2_health bScript2 = g.GetComponent<Player_2_health>();
-                bScript2.updateHealthPlayer2(player2_hp);
+                player2_hp -= 15;
+                
 
-                player1_hp -= 1;
-                GameObject j = GameObject.Find("Player 1 health");
-                Player_1_health bScript = j.GetComponent<Player_1_health>();
-                bScript.updateHealthPlayer1(player1_hp);
+                player1_hp -= 15;
+                
             }
             else if (Attack1Success == true && Dodge2Success == true)
             {
@@ -181,18 +176,14 @@ public class Attack : MonoBehaviour {
             else if (Attack1Success == true && Dodge2Success == false)
             {
                 //Debug.Log("Something!5");
-                player2_hp -= 1;
-                GameObject g = GameObject.Find("Player 2 health");
-                Player_2_health bScript2 = g.GetComponent<Player_2_health>();
-                bScript2.updateHealthPlayer2(player2_hp);
+                player2_hp -= 15;
+                
             }
             else if (Dodge1Success == false && Attack2Success == true)
             {
                // Debug.Log("Something!6");
-                player1_hp -= 1;
-                GameObject j = GameObject.Find("Player 1 health");
-                Player_1_health bScript = j.GetComponent<Player_1_health>();
-                bScript.updateHealthPlayer1(player1_hp);
+                player1_hp -= 15;
+                
             }
             Attack1Success = false;
             Attack2Success = false;

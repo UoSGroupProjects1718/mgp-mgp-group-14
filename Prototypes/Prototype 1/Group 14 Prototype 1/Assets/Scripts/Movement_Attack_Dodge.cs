@@ -11,7 +11,8 @@ public class Movement_Attack_Dodge : MonoBehaviour
     public bool Hit;
     public bool Dodge;
     public GameObject AttackRef;
-    [Range(1.0f, 2.5f)]
+    [Range(1.0f, 5.0f)]
+
     public float speed = 1.5f;
 
     void Start()
@@ -29,7 +30,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
             if (Pend == false)
             {
 
-                if (transform.eulerAngles.z <= 47 || transform.eulerAngles.z > 315)
+                if (transform.eulerAngles.z <= 49 || transform.eulerAngles.z > 315)
                 {
                     transform.Rotate(0, 0, -1 * speed);                      //When the pendulum rotation is between those values it moves to the left.
                                                                      //Until it reaches -45 degrees.
@@ -43,12 +44,12 @@ public class Movement_Attack_Dodge : MonoBehaviour
             }
             else if (Pend == true)
             {
-                if (transform.eulerAngles.z < 45 || transform.eulerAngles.z >= 314)
+                if (transform.eulerAngles.z < 45 || transform.eulerAngles.z >= 312)
                 {                                                                   //Here is moving to the right until it reaches 46 degrees.
                     transform.Rotate(0, 0, 1 * speed);                                      //Then will start moving to the left again.
 
                 }
-                else if (transform.eulerAngles.z >= 44 || transform.eulerAngles.z <= 47) 
+                else if (transform.eulerAngles.z >= 44 || transform.eulerAngles.z <= 49) 
                 {
                     Pend = false;
 
@@ -73,33 +74,37 @@ public class Movement_Attack_Dodge : MonoBehaviour
             AttackRef = GameObject.Find("Attack/dodge");
             Attack something = AttackRef.GetComponent<Attack>();
             isMoving = false;
-            if (transform.eulerAngles.z <= 40 && transform.eulerAngles.z >= 22)
+            if (transform.eulerAngles.z <= 25 && transform.eulerAngles.z >= 11)
             {
                 if (something.is1Clicked == true)
                 {
                     something.Attack1Success = true;
                     something.Dodge1Success = false;
+                    //Debug.Log("HIT");
                 }
 
                 if (something.is2Clicked == true)
                 {
                     something.Attack2Success = true;
                     something.Dodge2Success = false;
+                    //Debug.Log("HIT2");
                 }
 
             }
-            else if (transform.eulerAngles.z <= 351 && transform.eulerAngles.z >= 330)
+            else if (transform.eulerAngles.z <= 355 && transform.eulerAngles.z >= 344)
             {
 
                 if (something.is1dClicked == true)
                 {
                     something.Attack1Success = false;
                     something.Dodge1Success = true;
+                    //Debug.Log("HIT3");
                 }
                 if (something.is2dClicked == true)
                 {
                     something.Attack2Success = false;
                     something.Dodge2Success = true;
+                   // Debug.Log("HIT4");
                 }
             }
         }
