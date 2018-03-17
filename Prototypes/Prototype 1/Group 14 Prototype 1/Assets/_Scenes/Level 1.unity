@@ -613,6 +613,7 @@ MonoBehaviour:
   Attack2Success: 0
   Dodge1Success: 0
   Dodge2Success: 0
+  SpeedUpPend: 0
 --- !u!4 &1047469966
 Transform:
   m_ObjectHideFlags: 0
@@ -1015,6 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pendulum: {fileID: 0}
+  AttackRef: {fileID: 1047469964}
 --- !u!4 &1262119774
 Transform:
   m_ObjectHideFlags: 0

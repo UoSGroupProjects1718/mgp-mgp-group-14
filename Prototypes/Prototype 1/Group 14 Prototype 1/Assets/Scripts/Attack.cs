@@ -37,6 +37,8 @@ public class Attack : MonoBehaviour {
     public bool Dodge1Success;
     public bool Dodge2Success;
 
+    public bool SpeedUpPend;
+
     Moves player1Move;
 	Moves player2Move;
 
@@ -57,7 +59,25 @@ public class Attack : MonoBehaviour {
         Attack1Success = false;
         Attack2Success = false;
         Dodge1Success = false;
+        SpeedUpPend = false;
      }
+
+    public void HealUp()
+    {
+        if (currentPlayer == 1)
+        {
+            player1_hp += 15;
+        }
+        else if (currentPlayer == 2)
+        {
+            player2_hp += 15;
+        }
+    }
+
+    public void SpeedUpPendulum()
+    {
+        SpeedUpPend = true;
+    }
 
     public void isDodgeClicked()
     {
@@ -189,6 +209,7 @@ public class Attack : MonoBehaviour {
             Attack2Success = false;
             Dodge1Success = false;
             Dodge2Success = false;
+            SpeedUpPend = false;
             currentPlayer = 1;
         }
     }
