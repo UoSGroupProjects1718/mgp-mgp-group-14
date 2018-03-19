@@ -45,8 +45,8 @@ public class Attack : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        player1_hp = 100; //Sets player 1 health to 3
-        player2_hp = 100; //Sets player 2 health to 3
+        player1_hp = 100; //Sets player 1 health to 100
+        player2_hp = 100; //Sets player 2 health to 100
 		currentPlayer = 1; //Sets the current player to 1
         player1_Attackb.onClick.AddListener(isAttackClicked);
         player2_Attackb.onClick.AddListener(isAttack2Clicked);
@@ -118,7 +118,10 @@ public class Attack : MonoBehaviour {
         }else if (currentPlayer == 2 && Input.GetMouseButtonDown(0) && (is2Clicked == true || is2dClicked == true))
         {
             Player3Attack();
-        }
+		}else if (currentPlayer == 5 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true))
+		{
+			Calculate2();
+		}
 		 
 		if (currentPlayer == 2 && Input.GetMouseButton(0))
 		{
@@ -129,6 +132,20 @@ public class Attack : MonoBehaviour {
 		{
 			player1_Attackb.interactable = true;
 			player1_Dodgeb.interactable = true;
+		}
+		else if (currentPlayer == 4 && Input.GetMouseButton(0))
+		{
+			player1_Attackb.interactable = false;
+			player1_Dodgeb.interactable = false;
+			player2_Attackb.interactable = true;
+			player2_Dodgeb.interactable = true;
+		}
+		else if (currentPlayer == 5 && Input.GetMouseButton(0))
+		{
+			player1_Attackb.interactable = true;
+			player1_Dodgeb.interactable = true;
+			player2_Attackb.interactable = false;
+			player2_Dodgeb.interactable = false;
 		}
 
 	}
@@ -175,10 +192,10 @@ public class Attack : MonoBehaviour {
             if (Attack1Success == true && Attack2Success == true)
             {
                 //Debug.Log("Something!");
-                player2_hp -= 15;
+                player2_hp -= 10;
                 
 
-                player1_hp -= 15;
+                player1_hp -= 10;
                 
             }
             else if (Attack1Success == true && Dodge2Success == true)
@@ -196,13 +213,13 @@ public class Attack : MonoBehaviour {
             else if (Attack1Success == true && Dodge2Success == false)
             {
                 //Debug.Log("Something!5");
-                player2_hp -= 15;
+                player2_hp -= 10;
                 
             }
             else if (Dodge1Success == false && Attack2Success == true)
             {
                // Debug.Log("Something!6");
-                player1_hp -= 15;
+                player1_hp -= 10;
                 
             }
             Attack1Success = false;
@@ -210,10 +227,94 @@ public class Attack : MonoBehaviour {
             Dodge1Success = false;
             Dodge2Success = false;
             SpeedUpPend = false;
-            currentPlayer = 1;
+            currentPlayer = 4;
         }
     }
 
+	public void Player2Attack2()
+	{
+		if (currentPlayer == 4 )
+		{
+			player2_Attackb.interactable = false;
+			//player1_Attackb.interactable = true;
+			player2_Dodgeb.interactable = false;
+			//player1_Dodgeb.interactable = true;
+
+			is1Clicked = false;
+			is1dClicked = false;
+			is2Clicked = false;
+			is2dClicked = false;
+			currentPlayer = 5;
+		}
+
+	}
+
+	public void Player1Attack2()
+	{
+		if (currentPlayer == 5) //If the current player equals 5
+		{
+			// player2_Attackb.interactable = true;
+			player1_Attackb.interactable = false;
+			// player2_Dodgeb.interactable = true;
+			player1_Dodgeb.interactable = false;
+
+			is1Clicked = false;
+			is1dClicked = false;
+			is2Clicked = false;
+			is2dClicked = false;
+
+		}
+
+
+	}
+
+	public void Calculate2()
+	{
+		currentPlayer = 6;
+
+		if (currentPlayer == 6)
+		{
+			if (Attack1Success == true && Attack2Success == true)
+			{
+				//Debug.Log("Something!");
+				player2_hp -= 10;
+
+
+				player1_hp -= 10;
+
+			}
+			else if (Attack1Success == true && Dodge2Success == true)
+			{
+				//Debug.Log("Something2!");
+			}
+			else if (Dodge1Success == true && Attack2Success == true)
+			{
+				//Debug.Log("Something3!");
+			}
+			else if (Dodge1Success == true && Dodge2Success == true)
+			{
+				//Debug.Log("Something!4");
+			}
+			else if (Attack1Success == true && Dodge2Success == false)
+			{
+				//Debug.Log("Something!5");
+				player2_hp -= 10;
+
+			}
+			else if (Dodge1Success == false && Attack2Success == true)
+			{
+				// Debug.Log("Something!6");
+				player1_hp -= 10;
+
+			}
+			Attack1Success = false;
+			Attack2Success = false;
+			Dodge1Success = false;
+			Dodge2Success = false;
+			SpeedUpPend = false;
+			currentPlayer = 1;
+		}
+	}
 	
 }
 	
