@@ -24,10 +24,15 @@ public class Attack : MonoBehaviour {
     public Button player1_Dodgeb;
     public Button player2_Dodgeb;
 
+    public Button player1_Speed;
+    public Button player2_Speed;
+
     public bool is1Clicked;
     public bool is2Clicked;
     public bool is1dClicked;
     public bool is2dClicked;
+    public bool is1sClicked;
+    public bool is2sClicked;
 
     public GameObject Ref_to_attack;
     public GameObject Ref_to_pendulum;
@@ -37,7 +42,8 @@ public class Attack : MonoBehaviour {
     public bool Dodge1Success;
     public bool Dodge2Success;
 
-    public bool SpeedUpPend;
+    public bool SpeedUpPendP1;
+    public bool SpeedUpPendP2;
 
     Moves player1Move;
 	Moves player2Move;
@@ -52,14 +58,20 @@ public class Attack : MonoBehaviour {
         player2_Attackb.onClick.AddListener(isAttack2Clicked);
         player1_Dodgeb.onClick.AddListener(isDodgeClicked);
         player2_Dodgeb.onClick.AddListener(isDodge2Clicked);
+        player1_Speed.onClick.AddListener(is1SpeedClicked);
+        player2_Speed.onClick.AddListener(is2SpeedClicked);
+        
         is1Clicked = false;
         is2Clicked = false;
         is1dClicked = false;
         is2dClicked = false;
+        is1sClicked = false;
+        is2sClicked = false;
         Attack1Success = false;
         Attack2Success = false;
         Dodge1Success = false;
-        SpeedUpPend = false;
+        SpeedUpPendP1 = false;
+        SpeedUpPendP2 = false;
      }
 
     public void HealUp()
@@ -71,12 +83,33 @@ public class Attack : MonoBehaviour {
         else if (currentPlayer == 2)
         {
             player2_hp += 15;
+        } else if (currentPlayer == 3)
+        {
+            player1_hp += 15;
+        } else if (currentPlayer == 4)
+        {
+            player2_hp += 15;
         }
     }
-
-    public void SpeedUpPendulum()
+    public void is1SpeedClicked()
     {
-        SpeedUpPend = true;
+        is1sClicked = true;
+    }
+    public void is2SpeedClicked()
+    {
+        is2sClicked = true;
+    }
+    public void SpeedUpPendulumP1()
+    {
+        if (currentPlayer != 5)
+        {
+            SpeedUpPendP1 = true;
+        }
+        else
+        {
+            SpeedUpPendP1 = false;
+        }
+        
     }
 
     public void isDodgeClicked()
@@ -112,13 +145,13 @@ public class Attack : MonoBehaviour {
 		{
 			SceneManager.LoadScene ("Player Draw");
 		}
-        if (currentPlayer == 1 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true))
+        if (currentPlayer == 1 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true || is1sClicked == true))
         {
             currentPlayer = 2;
-        }else if (currentPlayer == 2 && Input.GetMouseButtonDown(0) && (is2Clicked == true || is2dClicked == true))
+        }else if (currentPlayer == 2 && Input.GetMouseButtonDown(0) && (is2Clicked == true || is2dClicked == true || is2sClicked == true))
         {
             Player3Attack();
-		}else if (currentPlayer == 5 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true))
+		}else if (currentPlayer == 5 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true || is1sClicked == true))
 		{
 			Calculate2();
 		}
@@ -127,26 +160,32 @@ public class Attack : MonoBehaviour {
 		{
 			player2_Attackb.interactable = true;
 			player2_Dodgeb.interactable = true;
-		}
+            player2_Speed.interactable = true;
+        }
 		else if (currentPlayer == 1 && Input.GetMouseButton(0))
 		{
 			player1_Attackb.interactable = true;
 			player1_Dodgeb.interactable = true;
-		}
+            player1_Speed.interactable = true;
+        }
 		else if (currentPlayer == 4 && Input.GetMouseButton(0))
 		{
 			player1_Attackb.interactable = false;
 			player1_Dodgeb.interactable = false;
-			player2_Attackb.interactable = true;
+            player1_Speed.interactable = false;
+            player2_Attackb.interactable = true;
 			player2_Dodgeb.interactable = true;
-		}
+            player2_Speed.interactable = true;
+        }
 		else if (currentPlayer == 5 && Input.GetMouseButton(0))
 		{
 			player1_Attackb.interactable = true;
 			player1_Dodgeb.interactable = true;
-			player2_Attackb.interactable = false;
+            player1_Speed.interactable = true;
+            player2_Attackb.interactable = false;
 			player2_Dodgeb.interactable = false;
-		}
+            player2_Speed.interactable = false;
+        }
 
 	}
 
@@ -158,11 +197,15 @@ public class Attack : MonoBehaviour {
             player1_Attackb.interactable = false;
            // player2_Dodgeb.interactable = true;
             player1_Dodgeb.interactable = false;
+            player1_Speed.interactable = false;
+
 
             is1Clicked = false;
             is1dClicked = false;
             is2Clicked = false;
             is2dClicked = false;
+            is1sClicked = false;
+            is2sClicked = false;
         }
 
 
@@ -176,11 +219,14 @@ public class Attack : MonoBehaviour {
             //player1_Attackb.interactable = true;
             player2_Dodgeb.interactable = false;
             //player1_Dodgeb.interactable = true;
-        
+            player2_Speed.interactable = false;
+
             is1Clicked = false;
             is1dClicked = false;
             is2Clicked = false;
             is2dClicked = false;
+            is1sClicked = false;
+            is2sClicked = false;
         }
 	}
 
@@ -226,7 +272,8 @@ public class Attack : MonoBehaviour {
             Attack2Success = false;
             Dodge1Success = false;
             Dodge2Success = false;
-            SpeedUpPend = false;
+            //SpeedUpPendP1 = false;
+            //SpeedUpPendP2 = false;
             currentPlayer = 4;
         }
     }
@@ -238,13 +285,16 @@ public class Attack : MonoBehaviour {
 			player2_Attackb.interactable = false;
 			//player1_Attackb.interactable = true;
 			player2_Dodgeb.interactable = false;
-			//player1_Dodgeb.interactable = true;
+            //player1_Dodgeb.interactable = true;
+            player2_Speed.interactable = false;
 
-			is1Clicked = false;
+            is1Clicked = false;
 			is1dClicked = false;
 			is2Clicked = false;
 			is2dClicked = false;
-			currentPlayer = 5;
+            is1sClicked = false;
+            is2sClicked = false;
+            currentPlayer = 5;
 		}
 
 	}
@@ -257,13 +307,16 @@ public class Attack : MonoBehaviour {
 			player1_Attackb.interactable = false;
 			// player2_Dodgeb.interactable = true;
 			player1_Dodgeb.interactable = false;
+            player1_Speed.interactable = false;
 
-			is1Clicked = false;
+            is1Clicked = false;
 			is1dClicked = false;
 			is2Clicked = false;
 			is2dClicked = false;
+            is1sClicked = false;
+            is2sClicked = false;
 
-		}
+        }
 
 
 	}
@@ -311,8 +364,9 @@ public class Attack : MonoBehaviour {
 			Attack2Success = false;
 			Dodge1Success = false;
 			Dodge2Success = false;
-			SpeedUpPend = false;
-			currentPlayer = 1;
+			//SpeedUpPendP1 = false;
+            //SpeedUpPendP2 = false;
+            currentPlayer = 1;
 		}
 	}
 	
