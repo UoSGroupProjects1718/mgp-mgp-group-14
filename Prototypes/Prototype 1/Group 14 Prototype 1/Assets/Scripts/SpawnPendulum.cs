@@ -53,6 +53,7 @@ public class SpawnPendulum : MonoBehaviour {
             Movement_Attack_Dodge reference = pendulum.GetComponentInChildren<Movement_Attack_Dodge>();
             reference.speed = 2.5f;
             atkref.SpeedUpPendP1 = false;
+
             if (atkref.is1sClicked == true)
             {
                 check = true;
