@@ -69,7 +69,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
     // to know if it's an attack dodge or miss.
     //We can add more attacks and dodges at different angles or even change the shape and the movement angles of the pendulum.
     {
-        if (Input.GetKeyDown("mouse 0"))
+        if (Input.GetKeyDown("mouse 0") && isMoving)
         {
             AttackRef = GameObject.Find("Attack/dodge");
             Attack something = AttackRef.GetComponent<Attack>();
@@ -107,6 +107,8 @@ public class Movement_Attack_Dodge : MonoBehaviour
                    // Debug.Log("HIT4");
                 }
             }
+
+            something.CompletePendulum();
         }
     }
 }

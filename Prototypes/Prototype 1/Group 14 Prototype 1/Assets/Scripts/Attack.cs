@@ -62,7 +62,7 @@ public class Attack : MonoBehaviour {
         player1_hp = 100; //Sets player 1 health to 100
         player2_hp = 100; //Sets player 2 health to 100
 		currentPlayer = 1; //Sets the current player to 1
-        player1_Attackb.onClick.AddListener(isAttackClicked);
+        //player1_Attackb.onClick.AddListener(isAttackClicked);
         player2_Attackb.onClick.AddListener(isAttack2Clicked);
         player1_Dodgeb.onClick.AddListener(isDodgeClicked);
         player2_Dodgeb.onClick.AddListener(isDodge2Clicked);
@@ -106,19 +106,24 @@ public class Attack : MonoBehaviour {
     public void isHealClicked()
     {
         is1hClicked = true;
+        DisableAllButtons();
     }
     public void isHeal2Clicked()
     {
         is2hClicked = true;
+        DisableAllButtons();
     }
     public void is1SpeedClicked()
     {
         is1sClicked = true;
+        DisableAllButtons();
     }
     public void is2SpeedClicked()
     {
         is2sClicked = true;
+        DisableAllButtons();
     }
+
     public void SpeedUpPendulumP1()
     {
         if (currentPlayer != 5)
@@ -135,19 +140,83 @@ public class Attack : MonoBehaviour {
     public void isDodgeClicked()
     {
         is1dClicked = true;
+        DisableAllButtons();
     }
     public void isDodge2Clicked()
     {
         is2dClicked = true;
+        DisableAllButtons();
     }
     public void isAttackClicked()
     {
         is1Clicked = true;
+        DisableAllButtons();
     }
     public void isAttack2Clicked()
     {
         is2Clicked = true;
+        DisableAllButtons();
     }
+
+    private void DisableAllButtons()
+    {
+        player1_Attackb.interactable = false;
+        player1_Dodgeb.interactable = false;
+        player1_Speed.interactable = false;
+        player1_Heal.interactable = false;
+
+        player2_Attackb.interactable = false;
+        player2_Dodgeb.interactable = false;
+        player2_Speed.interactable = false;
+        player2_Heal.interactable = false;
+    }
+
+    private void SetupPlayerButtons()
+    {
+        Debug.Log("SetupPlayerButtons: " + currentPlayer.ToString());
+        if (currentPlayer == 2 || currentPlayer == 4)
+        {
+            Debug.Log("Show player 2 controls");
+            player1_Attackb.interactable = false;
+            player1_Dodgeb.interactable = false;
+            player1_Speed.interactable = false;
+            player1_Heal.interactable = false;
+            player2_Attackb.interactable = true;
+            player2_Dodgeb.interactable = true;
+            player2_Speed.interactable = true;
+            player2_Heal.interactable = true;
+        }
+        else if (currentPlayer == 1 || currentPlayer == 5)
+        {
+            Debug.Log("Show player 1 controls");
+            player1_Attackb.interactable = true;
+            player1_Dodgeb.interactable = true;
+            player1_Speed.interactable = true;
+            player1_Heal.interactable = true;
+            player2_Attackb.interactable = false;
+            player2_Dodgeb.interactable = false;
+            player2_Speed.interactable = false;
+            player2_Heal.interactable = false;
+        }
+    }
+
+    public void CompletePendulum()
+    {
+        Debug.Log("In Complete Pendulum");
+        currentPlayer++;
+        
+        if (currentPlayer == 3 && (is2Clicked == true || is2dClicked == true || is2sClicked == true || is2hClicked == true))
+        {
+            Player3Attack();
+        }
+        else if (currentPlayer == 6 && (is1Clicked == true || is1dClicked == true || is1sClicked == true || is1hClicked == true))
+        {
+            Calculate2();
+        }
+
+        SetupPlayerButtons();
+    }
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -165,68 +234,12 @@ public class Attack : MonoBehaviour {
 		{
 			SceneManager.LoadScene ("Player Draw");
 		}
-        if (currentPlayer == 1 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true || is1sClicked == true || is1hClicked == true))
-        {
-            currentPlayer = 2;
-        }else if (currentPlayer == 2 && Input.GetMouseButtonDown(0) && (is2Clicked == true || is2dClicked == true || is2sClicked == true || is2hClicked == true))
-        {
-            Player3Attack();
-		}else if (currentPlayer == 5 && Input.GetMouseButtonDown(0) && (is1Clicked == true || is1dClicked == true || is1sClicked == true || is1hClicked == true))
-		{
-			Calculate2();
-		}
-		 
-		if (currentPlayer == 2 && Input.GetMouseButton(0))
-		{
-			player2_Attackb.interactable = true;
-			player2_Dodgeb.interactable = true;
-            player2_Speed.interactable = true;
-            player2_Heal.interactable = true;
-        }
-		else if (currentPlayer == 1 && Input.GetMouseButton(0))
-		{
-			player1_Attackb.interactable = true;
-			player1_Dodgeb.interactable = true;
-            player1_Speed.interactable = true;
-            player1_Heal.interactable = true;
-        }
-		else if (currentPlayer == 4 && Input.GetMouseButton(0))
-		{
-			player1_Attackb.interactable = false;
-			player1_Dodgeb.interactable = false;
-            player1_Speed.interactable = false;
-            player1_Heal.interactable = false;
-            player2_Attackb.interactable = true;
-			player2_Dodgeb.interactable = true;
-            player2_Speed.interactable = true;
-            player2_Heal.interactable = true;
-        }
-		else if (currentPlayer == 5 && Input.GetMouseButton(0))
-		{
-			player1_Attackb.interactable = true;
-			player1_Dodgeb.interactable = true;
-            player1_Speed.interactable = true;
-            player1_Heal.interactable = true;
-            player2_Attackb.interactable = false;
-			player2_Dodgeb.interactable = false;
-            player2_Speed.interactable = false;
-            player2_Heal.interactable = false;
-        }
-
 	}
 
 	public void PlayerAttack()
 	{
-		if (currentPlayer == 1) //If the current player equals 1
+		if (currentPlayer == 1 || currentPlayer == 5) //If the current player equals 1
 		{
-           // player2_Attackb.interactable = true;
-            player1_Attackb.interactable = false;
-           // player2_Dodgeb.interactable = true;
-            player1_Dodgeb.interactable = false;
-            player1_Speed.interactable = false;
-            player1_Heal.interactable = false;
-
-
             is1Clicked = false;
             is1dClicked = false;
             is2Clicked = false;
@@ -237,20 +250,8 @@ public class Attack : MonoBehaviour {
             //is2hClicked = false;
         }
 
-
-	}
-
-	public void Player2Attack()
-	{
-		if (currentPlayer == 2 )
-		{
-            player2_Attackb.interactable = false;
-            //player1_Attackb.interactable = true;
-            player2_Dodgeb.interactable = false;
-            //player1_Dodgeb.interactable = true;
-            player2_Speed.interactable = false;
-            player2_Heal.interactable = false;
-
+        if (currentPlayer == 2 || currentPlayer == 4)
+        {
             is1Clicked = false;
             is1dClicked = false;
             is2Clicked = false;
@@ -260,7 +261,8 @@ public class Attack : MonoBehaviour {
             //is1hClicked = false;
             //is2hClicked = false;
         }
-	}
+
+    }
 
     public void Player3Attack()
     {
@@ -323,58 +325,11 @@ public class Attack : MonoBehaviour {
         }
     }
 
-	public void Player2Attack2()
-	{
-		if (currentPlayer == 4 )
-		{
-			player2_Attackb.interactable = false;
-			//player1_Attackb.interactable = true;
-			player2_Dodgeb.interactable = false;
-            //player1_Dodgeb.interactable = true;
-            player2_Speed.interactable = false;
-            player2_Heal.interactable = false;
-
-            is1Clicked = false;
-			is1dClicked = false;
-			is2Clicked = false;
-			is2dClicked = false;
-            is1sClicked = false;
-            is2sClicked = false;
-            //is1hClicked = false;
-            //is2hClicked = false;
-            currentPlayer = 5;
-		}
-
-	}
-
-	public void Player1Attack2()
-	{
-		if (currentPlayer == 5) //If the current player equals 5
-		{
-			// player2_Attackb.interactable = true;
-			player1_Attackb.interactable = false;
-			// player2_Dodgeb.interactable = true;
-			player1_Dodgeb.interactable = false;
-            player1_Speed.interactable = false;
-            player1_Heal.interactable = false;
-
-            is1Clicked = false;
-			is1dClicked = false;
-			is2Clicked = false;
-			is2dClicked = false;
-            is1sClicked = false;
-            is2sClicked = false;
-            //is1hClicked = false;
-            //is2hClicked = false;
-
-        }
-
-
-	}
-
 	public void Calculate2()
 	{
 		currentPlayer = 6;
+
+        Debug.Log("In Calculate 2");
 
 		if (currentPlayer == 6)
 		{
@@ -430,7 +385,8 @@ public class Attack : MonoBehaviour {
             //SpeedUpPendP1 = false;
             //SpeedUpPendP2 = false;
             currentPlayer = 1;
-		}
+            Debug.Log("Set currentPlayer to 1");
+        }
 	}
 	
 }

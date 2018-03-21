@@ -7,7 +7,6 @@ public class SpawnPendulum : MonoBehaviour {
     public GameObject AttackRef;
     public bool check = false; //Just a check in the logic of the speedup
 
-
     public void Spawn()
     {
         Vector3 Position = new Vector3(0, 0.89f, -8.66f);
