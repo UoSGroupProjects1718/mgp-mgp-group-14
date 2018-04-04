@@ -18,6 +18,8 @@ public class Attack : MonoBehaviour {
     public int player1_hp;
     public int player2_hp;
 
+	public Text player_turn;
+
     public Button player1_Attackb;
     public Button player2_Attackb;
 
@@ -59,6 +61,7 @@ public class Attack : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		
         player1_hp = 100; //Sets player 1 health to 100
         player2_hp = 100; //Sets player 2 health to 100
 		currentPlayer = 1; //Sets the current player to 1
@@ -84,6 +87,7 @@ public class Attack : MonoBehaviour {
         SpeedUpPendP2 = false;
         HealP1 = false;
         HealP2 = false;
+		player_turn.text = "Player 1 Turn";
      }
 
     //public void HealUp()
@@ -176,6 +180,7 @@ public class Attack : MonoBehaviour {
         Debug.Log("SetupPlayerButtons: " + currentPlayer.ToString());
         if (currentPlayer == 2 || currentPlayer == 4)
         {
+			player_turn.text = "Player 2 Turn";
             Debug.Log("Show player 2 controls");
             player1_Attackb.interactable = false;
             player1_Dodgeb.interactable = false;
@@ -188,6 +193,7 @@ public class Attack : MonoBehaviour {
         }
         else if (currentPlayer == 1 || currentPlayer == 5)
         {
+			player_turn.text = "Player 1 Turn";
             Debug.Log("Show player 1 controls");
             player1_Attackb.interactable = true;
             player1_Dodgeb.interactable = true;

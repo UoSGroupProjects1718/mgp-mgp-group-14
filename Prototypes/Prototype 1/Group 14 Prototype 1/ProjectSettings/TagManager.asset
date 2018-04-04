@@ -10,6 +10,9 @@ TagManager:
   - Undefined
   - Pendulum
   - WORK
+  - Player Turn
+  - HitTrue
+  - HitFalse
   layers:
   - Default
   - TransparentFX

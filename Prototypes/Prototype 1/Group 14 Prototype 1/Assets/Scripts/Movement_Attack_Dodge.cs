@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement_Attack_Dodge : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
 
     public bool Hit;
     public bool Dodge;
+	public Text IsHit;
     public GameObject AttackRef;
     [Range(1.0f, 5.0f)]
 
@@ -19,6 +21,9 @@ public class Movement_Attack_Dodge : MonoBehaviour
     {
         Hit = false;
         Dodge = false;
+
+		IsHit = GameObject.Find("IsHit").GetComponent<Text>();
+
     }
 
     void FixedUpdate()
@@ -74,39 +79,39 @@ public class Movement_Attack_Dodge : MonoBehaviour
             AttackRef = GameObject.Find("Attack/dodge");
             Attack something = AttackRef.GetComponent<Attack>();
             isMoving = false;
-            if (transform.eulerAngles.z <= 25 && transform.eulerAngles.z >= 11)
-            {
-                if (something.is1Clicked == true)
-                {
-                    something.Attack1Success = true;
-                    something.Dodge1Success = false;
-                    //Debug.Log("HIT");
-                }
+			if (transform.eulerAngles.z <= 25 && transform.eulerAngles.z >= 11) {
+				if (something.is1Clicked == true) {
+					something.Attack1Success = true;
+					something.Dodge1Success = false;
+					//Debug.Log("HIT");
+					IsHit.text = "Attack Success";
+				}
 
-                if (something.is2Clicked == true)
-                {
-                    something.Attack2Success = true;
-                    something.Dodge2Success = false;
-                    //Debug.Log("HIT2");
-                }
+				if (something.is2Clicked == true) {
+					something.Attack2Success = true;
+					something.Dodge2Success = false;
+					//Debug.Log("HIT2");
+					IsHit.text = "Attack Success";
+				}
 
-            }
-            else if (transform.eulerAngles.z <= 355 && transform.eulerAngles.z >= 344)
-            {
+			} else if (transform.eulerAngles.z <= 355 && transform.eulerAngles.z >= 344) {
 
-                if (something.is1dClicked == true)
-                {
-                    something.Attack1Success = false;
-                    something.Dodge1Success = true;
-                    //Debug.Log("HIT3");
-                }
-                if (something.is2dClicked == true)
-                {
-                    something.Attack2Success = false;
-                    something.Dodge2Success = true;
-                   // Debug.Log("HIT4");
-                }
-            }
+				if (something.is1dClicked == true) {
+					something.Attack1Success = false;
+					something.Dodge1Success = true;
+					//Debug.Log("HIT3");
+					IsHit.text = "Dodge Success";
+				}
+				if (something.is2dClicked == true) {
+					something.Attack2Success = false;
+					something.Dodge2Success = true;
+					// Debug.Log("HIT4");
+					IsHit.text = "Dodge Success";
+				}
+			} else 
+			{
+				IsHit.text = "Miss";
+			}
 
             something.CompletePendulum();
         }
