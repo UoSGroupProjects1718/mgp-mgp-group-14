@@ -179,11 +179,11 @@ public class Attack : MonoBehaviour {
 
     private void SetupPlayerButtons()
     {
-        Debug.Log("SetupPlayerButtons: " + currentPlayer.ToString());
+        //Debug.Log("SetupPlayerButtons: " + currentPlayer.ToString());
         if (currentPlayer == 2 || currentPlayer == 4)
         {
 			player_turn.text = "Player 2 Turn";
-            Debug.Log("Show player 2 controls");
+           //Debug.Log("Show player 2 controls");
             player1_Attackb.interactable = false;
             player1_Dodgeb.interactable = false;
             player1_Speed.interactable = false;
@@ -196,7 +196,7 @@ public class Attack : MonoBehaviour {
         else if (currentPlayer == 1 || currentPlayer == 5)
         {
 			player_turn.text = "Player 1 Turn";
-            Debug.Log("Show player 1 controls");
+          //  Debug.Log("Show player 1 controls");
             player1_Attackb.interactable = true;
             player1_Dodgeb.interactable = true;
             player1_Speed.interactable = true;
@@ -210,7 +210,7 @@ public class Attack : MonoBehaviour {
 
     public void CompletePendulum()
     {
-        Debug.Log("In Complete Pendulum");
+       // Debug.Log("In Complete Pendulum");
         currentPlayer++;
         
         if (currentPlayer == 3 && (is2Clicked == true || is2dClicked == true || is2sClicked == true || is2hClicked == true))
@@ -323,7 +323,7 @@ public class Attack : MonoBehaviour {
             {
 
                 UpdateAnimation ScriptRef = Player1Ref.GetComponent<UpdateAnimation>();
-                ScriptRef.UpdateAnimationP1();
+                StartCoroutine(ScriptRef.AnimatorControl());
             }
 
             Attack1Success = false;
@@ -342,7 +342,7 @@ public class Attack : MonoBehaviour {
 	{
 		currentPlayer = 6;
 
-        Debug.Log("In Calculate 2");
+       // Debug.Log("In Calculate 2");
 
 		if (currentPlayer == 6)
 		{
@@ -393,7 +393,7 @@ public class Attack : MonoBehaviour {
             {
 
                 UpdateAnimation ScriptRef = Player1Ref.GetComponent<UpdateAnimation>();
-                ScriptRef.UpdateAnimationP1();
+                StartCoroutine(ScriptRef.AnimatorControl());
             }
             Attack1Success = false;
 			Attack2Success = false;
@@ -404,7 +404,7 @@ public class Attack : MonoBehaviour {
             //SpeedUpPendP1 = false;
             //SpeedUpPendP2 = false;
             currentPlayer = 1;
-            Debug.Log("Set currentPlayer to 1");
+            //Debug.Log("Set currentPlayer to 1");
         }
 	}
 	
