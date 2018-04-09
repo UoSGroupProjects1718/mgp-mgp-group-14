@@ -21,6 +21,9 @@ public class Attack : MonoBehaviour {
     public int Player1Combo = 0;
     public int Player2Combo = 0;
 
+    public GameObject ButtonControl;
+    public GameObject P2ButtonControl;
+
 	public Text player_turn;
 
     public GameObject Player1Ref;
@@ -169,15 +172,8 @@ public class Attack : MonoBehaviour {
 
     private void DisableAllButtons()
     {
-        player1_Attackb.interactable = false;
-        player1_Dodgeb.interactable = false;
-        player1_Speed.interactable = false;
-        player1_Heal.interactable = false;
-
-        player2_Attackb.interactable = false;
-        player2_Dodgeb.interactable = false;
-        player2_Speed.interactable = false;
-        player2_Heal.interactable = false;
+        ButtonControl.SetActive(false);
+        P2ButtonControl.SetActive(false);
     }
 
     private void SetupPlayerButtons()
@@ -186,28 +182,14 @@ public class Attack : MonoBehaviour {
         if (currentPlayer == 2 || currentPlayer == 4)
         {
 			player_turn.text = "Player 2 Turn";
-           //Debug.Log("Show player 2 controls");
-            player1_Attackb.interactable = false;
-            player1_Dodgeb.interactable = false;
-            player1_Speed.interactable = false;
-            player1_Heal.interactable = false;
-            player2_Attackb.interactable = true;
-            player2_Dodgeb.interactable = true;
-            player2_Speed.interactable = true;
-            player2_Heal.interactable = true;
+            ButtonControl.SetActive(false);
+            P2ButtonControl.SetActive(true);
         }
         else if (currentPlayer == 1 || currentPlayer == 5)
         {
 			player_turn.text = "Player 1 Turn";
-          //  Debug.Log("Show player 1 controls");
-            player1_Attackb.interactable = true;
-            player1_Dodgeb.interactable = true;
-            player1_Speed.interactable = true;
-            player1_Heal.interactable = true;
-            player2_Attackb.interactable = false;
-            player2_Dodgeb.interactable = false;
-            player2_Speed.interactable = false;
-            player2_Heal.interactable = false;
+            ButtonControl.SetActive(true);
+            P2ButtonControl.SetActive(false);
         }
     }
 
