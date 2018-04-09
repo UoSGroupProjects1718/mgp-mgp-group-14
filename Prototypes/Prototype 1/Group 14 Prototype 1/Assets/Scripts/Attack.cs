@@ -20,6 +20,8 @@ public class Attack : MonoBehaviour {
 
 	public Text player_turn;
 
+    public GameObject Player1Ref;
+
     public Button player1_Attackb;
     public Button player2_Attackb;
 
@@ -279,7 +281,6 @@ public class Attack : MonoBehaviour {
             {
                 //Debug.Log("Something!");
                 player2_hp -= 10;
-                
 
                 player1_hp -= 10;
                 
@@ -317,6 +318,12 @@ public class Attack : MonoBehaviour {
             if (is2hClicked == true)
             {
                 player2_hp += 15;
+            }
+            if (Attack1Success)
+            {
+
+                UpdateAnimation ScriptRef = Player1Ref.GetComponent<UpdateAnimation>();
+                ScriptRef.UpdateAnimationP1();
             }
 
             Attack1Success = false;
@@ -381,6 +388,12 @@ public class Attack : MonoBehaviour {
             if (is2hClicked == true)
             {
                 player2_hp += 15;
+            }
+            if (Attack1Success)
+            {
+
+                UpdateAnimation ScriptRef = Player1Ref.GetComponent<UpdateAnimation>();
+                ScriptRef.UpdateAnimationP1();
             }
             Attack1Success = false;
 			Attack2Success = false;
