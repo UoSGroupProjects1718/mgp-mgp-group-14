@@ -18,6 +18,9 @@ public class Attack : MonoBehaviour {
     public int player1_hp;
     public int player2_hp;
 
+    public int Player1Combo = 0;
+    public int Player2Combo = 0;
+
 	public Text player_turn;
 
     public GameObject Player1Ref;
@@ -319,13 +322,39 @@ public class Attack : MonoBehaviour {
             {
                 player2_hp += 15;
             }
+
             if (Attack1Success)
             {
 
                 UpdateAnimation ScriptRef = Player1Ref.GetComponent<UpdateAnimation>();
                 StartCoroutine(ScriptRef.AnimatorControl());
+                Player1Combo += 1;
+            }
+            else if (Attack1Success == false)
+            {
+                Player1Combo = 0;
             }
 
+            if (Attack2Success)
+            {
+                Player2Combo += 1;
+            }
+            else if (Attack2Success == false)
+            {
+                Player2Combo = 0;
+            }
+
+            if (Player1Combo >= 3)
+            {
+                player2_hp -= 10;
+                Player1Combo = 0;
+            }
+
+            if (Player2Combo >= 3)
+            {
+                player1_hp -= 10;
+                Player2Combo = 0;
+            }
             Attack1Success = false;
             Attack2Success = false;
             Dodge1Success = false;
@@ -394,6 +423,32 @@ public class Attack : MonoBehaviour {
 
                 UpdateAnimation ScriptRef = Player1Ref.GetComponent<UpdateAnimation>();
                 StartCoroutine(ScriptRef.AnimatorControl());
+                Player1Combo += 1;
+            }
+            else if (Attack1Success == false)
+            {
+                Player1Combo = 0;
+            }
+
+            if (Attack2Success)
+            {
+                Player2Combo += 1;
+            }
+            else if (Attack2Success == false)
+            {
+                Player2Combo = 0;
+            }
+
+            if (Player1Combo >= 3)
+            {
+                player2_hp -= 10;
+                Player1Combo = 0;
+            }
+
+            if (Player2Combo >= 3)
+            {
+                player1_hp -= 10;
+                Player2Combo = 0;
             }
             Attack1Success = false;
 			Attack2Success = false;
