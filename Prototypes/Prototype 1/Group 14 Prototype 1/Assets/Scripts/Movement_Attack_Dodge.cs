@@ -94,18 +94,18 @@ public class Movement_Attack_Dodge : MonoBehaviour
 					IsHit.text = "Attack Success";
 				}
 
-			} else if (transform.eulerAngles.z <= 355 && transform.eulerAngles.z >= 344) {
+			} else if (transform.eulerAngles.z <= 341 && transform.eulerAngles.z >= 325) {
 
 				if (something.is1dClicked == true) {
 					something.Attack1Success = false;
 					something.Dodge1Success = true;
-					//Debug.Log("HIT3");
+					Debug.Log("HIT3");
 					IsHit.text = "Dodge Success";
 				}
 				if (something.is2dClicked == true) {
 					something.Attack2Success = false;
 					something.Dodge2Success = true;
-					// Debug.Log("HIT4");
+					Debug.Log("HIT4");
 					IsHit.text = "Dodge Success";
 				}
 			} else 

@@ -265,9 +265,9 @@ public class Attack : MonoBehaviour {
             if (Attack1Success == true && Attack2Success == true)
             {
                 //Debug.Log("Something!");
-                player2_hp -= 10;
+                player2_hp -= 20;
 
-                player1_hp -= 10;
+                player1_hp -= 20;
                 
             }
             else if (Attack1Success == true && Dodge2Success == true)
