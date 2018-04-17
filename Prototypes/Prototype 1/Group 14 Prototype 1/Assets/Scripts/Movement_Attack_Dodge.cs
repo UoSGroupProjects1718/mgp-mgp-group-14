@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Movement_Attack_Dodge : MonoBehaviour
@@ -21,8 +19,11 @@ public class Movement_Attack_Dodge : MonoBehaviour
     {
         Hit = false;
         Dodge = false;
-
-		IsHit = GameObject.Find("IsHit").GetComponent<Text>();
+        AttackRef = GameObject.Find("Attack/dodge");
+        Attack something = AttackRef.GetComponent<Attack>();
+        
+        
+        IsHit = GameObject.Find("IsHit").GetComponent<Text>();
 
     }
 
@@ -64,6 +65,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
         }
         else if (isMoving == false)
         {
+            speed = 0f;
             Destroy(GameObject.FindWithTag("WORK"), 1);
         }
     }
@@ -76,40 +78,55 @@ public class Movement_Attack_Dodge : MonoBehaviour
     {
         if (Input.GetKeyDown("mouse 0") && isMoving)
         {
+            isMoving = false;
             AttackRef = GameObject.Find("Attack/dodge");
             Attack something = AttackRef.GetComponent<Attack>();
-            isMoving = false;
-			if (transform.eulerAngles.z <= 25 && transform.eulerAngles.z >= 11) {
+			if (transform.eulerAngles.z <= 15 && transform.eulerAngles.z >= -15) {
+                Debug.Log("InPendulum");
 				if (something.is1Clicked == true) {
 					something.Attack1Success = true;
-					something.Dodge1Success = false;
 					//Debug.Log("HIT");
 					IsHit.text = "Attack Success";
 				}
-
-				if (something.is2Clicked == true) {
+                if (something.is2Clicked == true) {
 					something.Attack2Success = true;
-					something.Dodge2Success = false;
 					//Debug.Log("HIT2");
 					IsHit.text = "Attack Success";
-				}
+                }
+                 if (something.is1dClicked)
+                {
+                    something.Dodge1Success = true;
+                    IsHit.text = "Dodge Success";
+                }
+                 if (something.is2dClicked)
+                {
+                    something.Dodge2Success = true;
+                    IsHit.text = "Dodge Success";
+                }
+                 if (something.is1hClicked)
+                {
+                    something.Heal1Success = true;
+                    IsHit.text = "Heal Success";
+                }
+                 if (something.is2hClicked)
+                {
+                    something.Heal2Success = true;
+                    IsHit.text = "Heal Success";
+                }
+                 if (something.is1sClicked)
+                {
+                    something.Speed1Success = true;
+                    IsHit.text = "Speed Success";
+                }
+                else if (something.is2sClicked)
+                {
+                    something.Speed2Success = true;
+                    IsHit.text = "Speed Success";
+                }
 
-			} else if (transform.eulerAngles.z <= 341 && transform.eulerAngles.z >= 325) {
+            }  else if (transform.eulerAngles.z > 15 && transform.eulerAngles.z < 345)
 
-				if (something.is1dClicked == true) {
-					something.Attack1Success = false;
-					something.Dodge1Success = true;
-					Debug.Log("HIT3");
-					IsHit.text = "Dodge Success";
-				}
-				if (something.is2dClicked == true) {
-					something.Attack2Success = false;
-					something.Dodge2Success = true;
-					Debug.Log("HIT4");
-					IsHit.text = "Dodge Success";
-				}
-			} else 
-			{
+            {
 				IsHit.text = "Miss";
 			}
 

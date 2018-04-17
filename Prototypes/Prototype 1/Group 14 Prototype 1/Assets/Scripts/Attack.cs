@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -49,13 +47,18 @@ public class Attack : MonoBehaviour {
     public bool is1hClicked;
     public bool is2hClicked;
 
-    public GameObject Ref_to_attack;
+    public GameObject Ref_to_spawn;
     public GameObject Ref_to_pendulum;
 
     public bool Attack1Success;
     public bool Attack2Success;
     public bool Dodge1Success;
     public bool Dodge2Success;
+
+    public bool Heal1Success;
+    public bool Heal2Success;
+    public bool Speed1Success;
+    public bool Speed2Success;
 
     public bool SpeedUpPendP1;
     public bool SpeedUpPendP2;
@@ -95,6 +98,10 @@ public class Attack : MonoBehaviour {
         SpeedUpPendP2 = false;
         HealP1 = false;
         HealP2 = false;
+        Heal1Success = false;
+        Heal2Success = false;
+        Speed1Success = false;
+        Speed2Success = false;
 		player_turn.text = "Player 1 Turn";
      }
 
@@ -136,18 +143,19 @@ public class Attack : MonoBehaviour {
         DisableAllButtons();
     }
 
-    public void SpeedUpPendulumP1()
-    {
-        if (currentPlayer != 5)
-        {
-            SpeedUpPendP1 = true;
-        }
-        else
-        {
-            SpeedUpPendP1 = false;
-        }
+    //public void SpeedUpPendulumP1()
+    //{
+    //    if (currentPlayer != 5)
+    //    {
+    //        SpeedUpPendP1 = true;
+    //    }
+    //    else
+    //    {
+    //        SpeedUpPendP1 = false;
+    //        Speed1Success = false;
+    //    }
         
-    }
+    //}
 
     public void isDodgeClicked()
     {
@@ -195,14 +203,30 @@ public class Attack : MonoBehaviour {
 
     public void CompletePendulum()
     {
-       // Debug.Log("In Complete Pendulum");
+        // Debug.Log("In Complete Pendulum");
+
+
+        if (Speed1Success == true)
+        {
+            SpawnPendulum SpawnScriptRef = Ref_to_spawn.GetComponent<SpawnPendulum>();
+            Speed1Success = false;
+            SpawnScriptRef.Spawn();
+        }
+        else if (Speed2Success == true)
+        {
+            SpawnPendulum SpawnScriptRef = Ref_to_spawn.GetComponent<SpawnPendulum>();
+            Speed2Success = false;
+            SpawnScriptRef.Spawn();
+        }
+        PlayerAttack();
         currentPlayer++;
-        
-        if (currentPlayer == 3 && (is2Clicked == true || is2dClicked == true || is2sClicked == true || is2hClicked == true))
+
+        if (currentPlayer == 3)
         {
             Player3Attack();
+
         }
-        else if (currentPlayer == 6 && (is1Clicked == true || is1dClicked == true || is1sClicked == true || is1hClicked == true))
+        else if (currentPlayer == 6)
         {
             Calculate2();
         }
@@ -213,17 +237,17 @@ public class Attack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (player2_hp == 0 && player1_hp >= 1) //If the player 2 health is 0 and player 1 health is higher or equal to 1 then load player 1 win scene
+		if (player2_hp <= 0 && player1_hp >= 1) //If the player 2 health is 0 and player 1 health is higher or equal to 1 then load player 1 win scene
 		{
 			SceneManager.LoadScene ("Player 1 Win");
 		}
 
-		if (player1_hp == 0 && player2_hp >= 1) //If the player 1 health is 0 and player 2 health is higher or equal to 1 then load player 2 win scene
+		if (player1_hp <= 0 && player2_hp >= 1) //If the player 1 health is 0 and player 2 health is higher or equal to 1 then load player 2 win scene
 		{
 			SceneManager.LoadScene ("Player 2 Win");
 		}
 
-		if (player1_hp == 0 && player2_hp == 0) //If the player 1 health and player 2 health is 0 then load the draw screen
+		if (player1_hp <= 0 && player2_hp <= 0) //If the player 1 health and player 2 health is 0 then load the draw screen
 		{
 			SceneManager.LoadScene ("Player Draw");
 		}
@@ -239,8 +263,8 @@ public class Attack : MonoBehaviour {
             is2dClicked = false;
             is1sClicked = false;
             is2sClicked = false;
-            //is1hClicked = false;
-            //is2hClicked = false;
+            is1hClicked = false;
+            is2hClicked = false;
         }
 
         if (currentPlayer == 2 || currentPlayer == 4)
@@ -251,8 +275,8 @@ public class Attack : MonoBehaviour {
             is2dClicked = false;
             is1sClicked = false;
             is2sClicked = false;
-            //is1hClicked = false;
-            //is2hClicked = false;
+            is1hClicked = false;
+            is2hClicked = false;
         }
 
     }
@@ -295,12 +319,12 @@ public class Attack : MonoBehaviour {
                 
             }
 
-            if (is1hClicked == true)
+            if (Heal1Success == true)
             {
                 player1_hp += 15;
             }
 
-            if (is2hClicked == true)
+            if (Heal2Success == true)
             {
                 player2_hp += 15;
             }
@@ -341,8 +365,9 @@ public class Attack : MonoBehaviour {
             Attack2Success = false;
             Dodge1Success = false;
             Dodge2Success = false;
-            is1hClicked = false;
-            is2hClicked = false;
+            Heal1Success = false;
+            Heal2Success = false;
+        
             //SpeedUpPendP1 = false;
             //SpeedUpPendP2 = false;
             currentPlayer = 4;
@@ -436,8 +461,8 @@ public class Attack : MonoBehaviour {
 			Attack2Success = false;
 			Dodge1Success = false;
 			Dodge2Success = false;
-            is1hClicked = false;
-            is2hClicked = false;
+            Heal1Success = false;
+            Heal2Success = false;;
             //SpeedUpPendP1 = false;
             //SpeedUpPendP2 = false;
             currentPlayer = 1;

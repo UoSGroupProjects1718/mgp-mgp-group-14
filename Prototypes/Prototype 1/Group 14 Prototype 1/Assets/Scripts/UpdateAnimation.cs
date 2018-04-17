@@ -6,6 +6,7 @@ public class UpdateAnimation : MonoBehaviour {
 
     public Animator P1AttackAnim;
     public WaitForSeconds count = new WaitForSeconds(1); //This is a delay
+    public WaitForSeconds PlayDelay = new WaitForSeconds(1); 
     public bool AttackAnimation = false;
 
     // Use this for initialization
@@ -16,6 +17,7 @@ public class UpdateAnimation : MonoBehaviour {
 	
     public IEnumerator AnimatorControl()
     {
+        yield return PlayDelay;
         AttackAnimation = true;
         P1AttackAnim.enabled = true;
         P1AttackAnim.SetBool("AnimControl", true);
