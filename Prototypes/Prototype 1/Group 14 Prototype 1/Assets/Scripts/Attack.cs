@@ -289,10 +289,10 @@ public class Attack : MonoBehaviour {
             if (Attack1Success == true && Attack2Success == true)
             {
                 //Debug.Log("Something!");
-                player2_hp -= 20;
+                player2_hp -= 40;
 				//HealthSlider.health -= 20f;
 
-                player1_hp -= 20;
+                player1_hp -= 40;
 				//HealthSlider.health -= 20f;
                 
             }
@@ -311,14 +311,14 @@ public class Attack : MonoBehaviour {
             else if (Attack1Success == true && Dodge2Success == false)
             {
                 //Debug.Log("Something!5");
-                player2_hp -= 10;
+                player2_hp -= 40;
 				//HealthSlider.health -= 10f;
                 
             }
             else if (Dodge1Success == false && Attack2Success == true)
             {
                // Debug.Log("Something!6");
-                player1_hp -= 10;
+                player1_hp -= 40;
 				//HealthSlider.health -= 10f;
                 
             }
