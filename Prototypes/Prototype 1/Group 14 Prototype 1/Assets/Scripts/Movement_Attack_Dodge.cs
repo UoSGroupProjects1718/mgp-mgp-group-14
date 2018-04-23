@@ -7,6 +7,8 @@ public class Movement_Attack_Dodge : MonoBehaviour
 
     public bool isMoving = true;       //Keeps track to when the pendulum is moving and when it stopped.
 
+    public EdgeCollider2D ColliderRef;
+    public BoxCollider2D SymbolRef;
     public bool Hit;
     public bool Dodge;
 	public Text IsHit;
@@ -24,6 +26,8 @@ public class Movement_Attack_Dodge : MonoBehaviour
         
         
         IsHit = GameObject.Find("IsHit").GetComponent<Text>();
+        //EdgeCollider2D ColliderRef = GetComponentInChildren<EdgeCollider2D>();
+        //BoxCollider2D SymbolRef = GetComponentInChildren<BoxCollider2D>();
 
     }
 
@@ -69,6 +73,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
             Destroy(GameObject.FindWithTag("WORK"), 1);
         }
     }
+    
 
     public void StopPendulum()
 
@@ -81,7 +86,8 @@ public class Movement_Attack_Dodge : MonoBehaviour
             isMoving = false;
             AttackRef = GameObject.Find("Attack/dodge");
             Attack something = AttackRef.GetComponent<Attack>();
-			if (transform.eulerAngles.z <= 15 && transform.eulerAngles.z >= -15) {
+            
+			if (ColliderRef.IsTouching(SymbolRef)) {
                 Debug.Log("InPendulum");
 				if (something.is1Clicked == true) {
 					something.Attack1Success = true;

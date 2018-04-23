@@ -13,8 +13,9 @@ public class Attack : MonoBehaviour {
 
 	public int currentPlayer;
 
-    public int player1_hp;
-    public int player2_hp;
+    
+    [Range(0,100)] public int player1_hp;
+    [Range(0,100)] public int player2_hp;
 
     public int Player1Combo = 0;
     public int Player2Combo = 0;
@@ -35,6 +36,7 @@ public class Attack : MonoBehaviour {
     public Button player1_Speed;
     public Button player2_Speed;
 
+    
     public Button player1_Heal;
     public Button player2_Heal;
 
@@ -325,12 +327,27 @@ public class Attack : MonoBehaviour {
 
             if (Heal1Success == true)
             {
-                player1_hp += 15;
+                if (player1_hp + 15 >= 100)
+                {
+                    player1_hp = 100;
+                }
+                else
+                {
+                    player1_hp += 15;
+                }
+                
             }
 
             if (Heal2Success == true)
             {
-                player2_hp += 15;
+                if (player2_hp + 15 >= 100)
+                {
+                    player2_hp = 100;
+                }
+                else
+                {
+                    player2_hp += 15;
+                }
             }
 
             if (Attack1Success)

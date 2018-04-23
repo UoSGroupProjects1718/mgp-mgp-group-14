@@ -2508,7 +2508,9 @@ MonoBehaviour:
   pendulum: {fileID: 0}
   AttackRef: {fileID: 1047469964}
   check: 0
+  check2: 0
   ChangeSpeed: 0
+  ChangeSpeed2: 0
 --- !u!4 &1262119774
 Transform:
   m_ObjectHideFlags: 0

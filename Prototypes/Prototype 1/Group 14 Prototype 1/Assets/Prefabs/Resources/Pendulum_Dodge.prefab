@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4147599476463252}
   - component: {fileID: 212749513163717868}
+  - component: {fileID: 50476690552459282}
+  - component: {fileID: 61916956693741210}
   m_Layer: 0
   m_Name: Block Symbol
   m_TagString: Untagged
@@ -52,6 +54,8 @@ GameObject:
   - component: {fileID: 4925401829522630}
   - component: {fileID: 212797479627015624}
   - component: {fileID: 114033482595218048}
+  - component: {fileID: 50268415251685206}
+  - component: {fileID: 68154917140627514}
   m_Layer: 0
   m_Name: Thing
   m_TagString: PendulumThing
@@ -108,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249593909551694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.55597, y: -2.1757057, z: -10.009844}
+  m_LocalPosition: {x: -26.282698, y: -11.834322, z: -10.009844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4114091505984146}
@@ -130,6 +134,88 @@ Transform:
   m_Father: {fileID: 4498869032577944}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+--- !u!50 &50268415251685206
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311359786081900}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!50 &50476690552459282
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1223853508962712}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &61916956693741210
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1223853508962712}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12}
+  m_EdgeRadius: 0
+--- !u!68 &68154917140627514
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311359786081900}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.09104247, y: 0.16597176}
+  - {x: -0.1597935, y: -6.7283545}
 --- !u!114 &114033482595218048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pend: 0
   isMoving: 1
+  ColliderRef: {fileID: 68154917140627514}
+  SymbolRef: {fileID: 61916956693741210}
   Hit: 0
   Dodge: 0
   IsHit: {fileID: 0}

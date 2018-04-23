@@ -14,6 +14,7 @@ TagManager:
   - HitTrue
   - HitFalse
   - hp1
+  - Symbol
   layers:
   - Default
   - TransparentFX
