@@ -291,10 +291,10 @@ public class Attack : MonoBehaviour {
             if (Attack1Success == true && Attack2Success == true)
             {
                 //Debug.Log("Something!");
-                player2_hp -= 40;
+                player2_hp -= 15;
 				//HealthSlider.health -= 20f;
 
-                player1_hp -= 40;
+                player1_hp -= 15;
 				//HealthSlider.health -= 20f;
                 
             }
@@ -313,14 +313,14 @@ public class Attack : MonoBehaviour {
             else if (Attack1Success == true && Dodge2Success == false)
             {
                 //Debug.Log("Something!5");
-                player2_hp -= 40;
+                player2_hp -= 15;
 				//HealthSlider.health -= 10f;
                 
             }
             else if (Dodge1Success == false && Attack2Success == true)
             {
                // Debug.Log("Something!6");
-                player1_hp -= 40;
+                player1_hp -= 15;
 				//HealthSlider.health -= 10f;
                 
             }
@@ -333,7 +333,7 @@ public class Attack : MonoBehaviour {
                 }
                 else
                 {
-                    player1_hp += 15;
+                    player1_hp += 10;
                 }
                 
             }
@@ -346,7 +346,7 @@ public class Attack : MonoBehaviour {
                 }
                 else
                 {
-                    player2_hp += 15;
+                    player2_hp += 10;
                 }
             }
 
@@ -397,55 +397,71 @@ public class Attack : MonoBehaviour {
 
 	public void Calculate2()
 	{
-		currentPlayer = 6;
-
-       // Debug.Log("In Calculate 2");
-
-		if (currentPlayer == 6)
-		{
-			if (Attack1Success == true && Attack2Success == true)
-			{
-				//Debug.Log("Something!");
-				player2_hp -= 10;
-
-
-				player1_hp -= 10;
-
-			}
-			else if (Attack1Success == true && Dodge2Success == true)
-			{
-				//Debug.Log("Something2!");
-			}
-			else if (Dodge1Success == true && Attack2Success == true)
-			{
-				//Debug.Log("Something3!");
-			}
-			else if (Dodge1Success == true && Dodge2Success == true)
-			{
-				//Debug.Log("Something!4");
-			}
-			else if (Attack1Success == true && Dodge2Success == false)
-			{
-				//Debug.Log("Something!5");
-				player2_hp -= 10;
-
-			}
-			else if (Dodge1Success == false && Attack2Success == true)
-			{
-				// Debug.Log("Something!6");
-				player1_hp -= 10;
-
-			}
-
-            if (is1hClicked == true)
+        currentPlayer = 6;
+        if (currentPlayer == 6)
+        {
+            if (Attack1Success == true && Attack2Success == true)
             {
-                player1_hp += 15;
+                //Debug.Log("Something!");
+                player2_hp -= 15;
+                //HealthSlider.health -= 20f;
+
+                player1_hp -= 15;
+                //HealthSlider.health -= 20f;
+
+            }
+            else if (Attack1Success == true && Dodge2Success == true)
+            {
+                //Debug.Log("Something2!");
+            }
+            else if (Dodge1Success == true && Attack2Success == true)
+            {
+                //Debug.Log("Something3!");
+            }
+            else if (Dodge1Success == true && Dodge2Success == true)
+            {
+                //Debug.Log("Something!4");
+            }
+            else if (Attack1Success == true && Dodge2Success == false)
+            {
+                //Debug.Log("Something!5");
+                player2_hp -= 15;
+                //HealthSlider.health -= 10f;
+
+            }
+            else if (Dodge1Success == false && Attack2Success == true)
+            {
+                // Debug.Log("Something!6");
+                player1_hp -= 15;
+                //HealthSlider.health -= 10f;
+
             }
 
-            if (is2hClicked == true)
+            if (Heal1Success == true)
             {
-                player2_hp += 15;
+                if (player1_hp + 15 >= 100)
+                {
+                    player1_hp = 100;
+                }
+                else
+                {
+                    player1_hp += 10;
+                }
+
             }
+
+            if (Heal2Success == true)
+            {
+                if (player2_hp + 15 >= 100)
+                {
+                    player2_hp = 100;
+                }
+                else
+                {
+                    player2_hp += 10;
+                }
+            }
+
             if (Attack1Success)
             {
 
@@ -479,17 +495,17 @@ public class Attack : MonoBehaviour {
                 Player2Combo = 0;
             }
             Attack1Success = false;
-			Attack2Success = false;
-			Dodge1Success = false;
-			Dodge2Success = false;
+            Attack2Success = false;
+            Dodge1Success = false;
+            Dodge2Success = false;
             Heal1Success = false;
-            Heal2Success = false;;
+            Heal2Success = false;
+
             //SpeedUpPendP1 = false;
             //SpeedUpPendP2 = false;
             currentPlayer = 1;
-            //Debug.Log("Set currentPlayer to 1");
         }
-	}
+    }
 	
 }
 	
