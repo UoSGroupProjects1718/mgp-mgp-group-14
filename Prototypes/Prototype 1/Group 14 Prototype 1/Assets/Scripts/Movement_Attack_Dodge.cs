@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Movement_Attack_Dodge : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class Movement_Attack_Dodge : MonoBehaviour
     public bool Dodge;
 	public Text IsHit;
     public GameObject AttackRef;
-    [Range(1.0f, 5.0f)]
 
+	public Animator hitAnim;
+	public Animator missAnim;
+
+	[Range(1.0f, 5.0f)]
     public float speed = 1.5f;
 
     void Start()
@@ -23,7 +27,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
         Dodge = false;
         AttackRef = GameObject.Find("Attack/dodge");
         Attack something = AttackRef.GetComponent<Attack>();
-        
+
         
         IsHit = GameObject.Find("IsHit").GetComponent<Text>();
         //EdgeCollider2D ColliderRef = GetComponentInChildren<EdgeCollider2D>();
@@ -93,10 +97,14 @@ public class Movement_Attack_Dodge : MonoBehaviour
 					something.Attack1Success = true;
 					//Debug.Log("HIT");
 					IsHit.text = "Attack Success";
+
+					//hitAnim.SetTrigger("Hit");
+					//animation.Play("Hit");
 				}
                 if (something.is2Clicked == true) {
 					something.Attack2Success = true;
 					//Debug.Log("HIT2");
+					hitAnim.SetTrigger("Hit");
 					IsHit.text = "Attack Success";
                 }
                  if (something.is1dClicked)
@@ -134,6 +142,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
 
             {
 				IsHit.text = "Miss";
+				missAnim.SetTrigger("Miss");
 			}
 
             something.CompletePendulum();
