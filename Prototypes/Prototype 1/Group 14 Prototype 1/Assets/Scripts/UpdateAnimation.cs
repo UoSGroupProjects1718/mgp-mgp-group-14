@@ -24,6 +24,6 @@ public class UpdateAnimation : MonoBehaviour {
         yield return count;
         AttackAnimation = false;
         P1AttackAnim.SetBool("AnimControl", false);
-        Debug.Log("Animator enabled!");
+        //Debug.Log("Animator enabled!");
     }
 }

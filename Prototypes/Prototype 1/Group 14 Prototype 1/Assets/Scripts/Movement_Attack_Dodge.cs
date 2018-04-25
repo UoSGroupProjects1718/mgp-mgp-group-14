@@ -17,6 +17,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
 
 	public Animator hitAnim;
 	public Animator missAnim;
+    public int layer;
 
 	[Range(1.0f, 5.0f)]
     public float speed = 1.5f;
@@ -31,6 +32,7 @@ public class Movement_Attack_Dodge : MonoBehaviour
         
         hitAnim = GameObject.Find("Hit").GetComponent<Animator>();
         missAnim = GameObject.Find("Miss").GetComponent<Animator>();
+     
 
         //EdgeCollider2D ColliderRef = GetComponentInChildren<EdgeCollider2D>();
         //BoxCollider2D SymbolRef = GetComponentInChildren<BoxCollider2D>();
@@ -39,6 +41,11 @@ public class Movement_Attack_Dodge : MonoBehaviour
 
     void FixedUpdate()
     {
+        layer = hitAnim.GetLayerIndex("base");
+        if (hitAnim.GetAnimatorTransitionInfo(layer).IsName("ToIdle"))
+        {
+            Debug.Log("Animation");
+        }
         StopPendulum();
 
         if (isMoving == true)           //Keeps the pendulum moving until you tap to stop it.
@@ -92,9 +99,9 @@ public class Movement_Attack_Dodge : MonoBehaviour
             isMoving = false;
             AttackRef = GameObject.Find("Attack/dodge");
             Attack something = AttackRef.GetComponent<Attack>();
-            
-			if (ColliderRef.IsTouching(SymbolRef)) {
-                Debug.Log("InPendulum");
+           
+
+            if (ColliderRef.IsTouching(SymbolRef)) {
 				if (something.is1Clicked == true) {
 					something.Attack1Success = true;
 					//Debug.Log("HIT");
