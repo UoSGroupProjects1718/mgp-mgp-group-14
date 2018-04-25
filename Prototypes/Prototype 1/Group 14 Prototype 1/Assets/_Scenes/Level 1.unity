@@ -1703,6 +1703,7 @@ MonoBehaviour:
   AttackRef: {fileID: 1047469964}
   hitAnim: {fileID: 0}
   missAnim: {fileID: 0}
+  layer: 0
   speed: 1
 --- !u!212 &890926573
 SpriteRenderer:
@@ -1913,6 +1914,7 @@ MonoBehaviour:
   AttackRef: {fileID: 0}
   hitAnim: {fileID: 0}
   missAnim: {fileID: 0}
+  layer: 0
   speed: 1
 --- !u!212 &982720101
 SpriteRenderer:
