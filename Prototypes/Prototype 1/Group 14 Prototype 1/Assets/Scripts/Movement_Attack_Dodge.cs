@@ -29,7 +29,9 @@ public class Movement_Attack_Dodge : MonoBehaviour
         Attack something = AttackRef.GetComponent<Attack>();
 
         
-        IsHit = GameObject.Find("IsHit").GetComponent<Text>();
+        hitAnim = GameObject.Find("Hit").GetComponent<Animator>();
+        missAnim = GameObject.Find("Miss").GetComponent<Animator>();
+
         //EdgeCollider2D ColliderRef = GetComponentInChildren<EdgeCollider2D>();
         //BoxCollider2D SymbolRef = GetComponentInChildren<BoxCollider2D>();
 
@@ -96,52 +98,51 @@ public class Movement_Attack_Dodge : MonoBehaviour
 				if (something.is1Clicked == true) {
 					something.Attack1Success = true;
 					//Debug.Log("HIT");
-					IsHit.text = "Attack Success";
-
-					//hitAnim.SetTrigger("Hit");
-					//animation.Play("Hit");
-				}
+					//IsHit.text = "Attack Success";
+                    hitAnim.SetTrigger("Hit");
+                }
                 if (something.is2Clicked == true) {
 					something.Attack2Success = true;
 					//Debug.Log("HIT2");
 					hitAnim.SetTrigger("Hit");
-					IsHit.text = "Attack Success";
+					//IsHit.text = "Attack Success";
                 }
                  if (something.is1dClicked)
                 {
                     something.Dodge1Success = true;
-                    IsHit.text = "Dodge Success";
+                    //IsHit.text = "Dodge Success";
+                    hitAnim.SetTrigger("Hit");
                 }
                  if (something.is2dClicked)
                 {
                     something.Dodge2Success = true;
-                    IsHit.text = "Dodge Success";
+                    hitAnim.SetTrigger("Hit");
                 }
                  if (something.is1hClicked)
                 {
                     something.Heal1Success = true;
-                    IsHit.text = "Heal Success";
+                    hitAnim.SetTrigger("Hit");
                 }
                  if (something.is2hClicked)
                 {
                     something.Heal2Success = true;
-                    IsHit.text = "Heal Success";
+                    hitAnim.SetTrigger("Hit");
                 }
                  if (something.is1sClicked)
                 {
                     something.Speed1Success = true;
-                    IsHit.text = "Speed Success";
+                    hitAnim.SetTrigger("Hit");
                 }
                 else if (something.is2sClicked)
                 {
                     something.Speed2Success = true;
-                    IsHit.text = "Speed Success";
+                    hitAnim.SetTrigger("Hit");
                 }
 
-            }  else if (transform.eulerAngles.z > 15 && transform.eulerAngles.z < 345)
+            }  else
 
             {
-				IsHit.text = "Miss";
+				
 				missAnim.SetTrigger("Miss");
 			}
 
